@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Авторизация/регистрация</title>
+		<style type="text/css">
+		   TABLE {
+		    text-align: center;
+		    width: 50%; 
+		    height: 30%;
+		    background: #99ff99; /* Цвет фона таблицы */
+		    border: 2px solid #000; /* Рамка вокруг таблицы */
+		    border-collapse: collapse;/* Без двойных линий */
+		   }
+		   TD, TH {
+		    padding: 5px; /* Поля вокруг текста */
+		    border: 1px solid #000; /* Рамка вокруг ячеек */
+		   }
+		 </style>
+		
+		<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+		<script>
+		function send(){
+			var fio = $('#fio').val();
+			var phone = $('#phone').val();
+			var str = "fio="+fio+"&phone="+phone;
+			$.ajax(
+					{
+					type: "POST",
+					url: "Authorization",
+					data: str,
+					success:function(answer){
+						$("div").html(answer);
+						}
+					}
+			);
+		}
+		</script>
+	</head>
+	<body>
+		<table>
+			<caption style="font-size:25px">Для оформления заказа необходимо зарегистрироваться/авторизоваться</caption>
+			<tr>
+				<td>
+					<p>Введите ФИО:</p>
+					<input type="text" id="fio">
+					<p>Номер телефона:</p>
+					<input type="text" id="phone"> <br> <br>
+					<button onclick="send()">Зарегистрироваться / Войти</button>
+					<div></div>
+				</td>
+			</tr>
+		</table>			
+	</body>
+</html>
